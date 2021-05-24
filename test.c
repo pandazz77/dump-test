@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <winsock2.h>
 
 unsigned short a1 = 1;
 unsigned short a2 = 2;
@@ -35,6 +36,16 @@ void dump(struct TData2* p, char buf[][32]) {
 	DecToHex(p->b4, buf[6]);
 }
 
+void swap(unsigned short *d,int size){
+	int i;
+    for(i=0;i<size>>1;++i) d[i] = htons(d[i]);
+}
+
+void unswap(unsigned short *d, int size){
+	int i;
+	for(i=0;i<size>>i;++i) d[i] = ntohs(d[i]);
+}
+
 
 int main(){
     int i;
@@ -49,6 +60,17 @@ int main(){
 	d.b4 = b4;
 	
 	char bufData[7][32]; //[кол-во эл-тов в стуктуре][]
-	dump(&d, bufData);
+	dump(&d,bufData);
+	for(i=0;i<7;i++) printf("%s ",bufData[i]);
+	puts("");
+	swap(&d,7);
+	dump(&d,bufData);
+	for(i=0;i<7;i++) printf("%s ",bufData[i]);
+	puts("");
+	unswap(&d,7);
+	dump(&d,bufData);
+	//puts("");
+	//unswap(&d,7);
+	//dump(&d, bufData);
 	for(i=0;i<7;i++) printf("%s ",bufData[i]);
 }
