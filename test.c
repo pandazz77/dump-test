@@ -45,7 +45,7 @@ void unswap(unsigned short *d, int size){
 	int i;
 	for(i=0;i<size>>i;++i) d[i] = ntohs(d[i]);
 }
-
+/*
 void getPackets(char *buf[][32],int size){
 	int i;
 	char result[7][32];
@@ -54,7 +54,7 @@ void getPackets(char *buf[][32],int size){
 	printf("%s",buf[0]);
 	printf("%s",result[0]);
 	//printf(i=0;i<size;i++) printf("%s",result);
-}
+}*/
 
 
 int main(){
@@ -86,6 +86,6 @@ int main(){
 	//dump(&d, bufData);
 	printf("unswap: ");
 	for(i=0;i<7;i++) printf("%s ",bufData[i]);
-	puts("");
-	getPackets(&bufData,7);
+	//puts("");
+	//getPackets(&bufData,7);
 }
