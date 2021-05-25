@@ -46,6 +46,16 @@ void unswap(unsigned short *d, int size){
 	for(i=0;i<size>>i;++i) d[i] = ntohs(d[i]);
 }
 
+void getPackets(char *buf[][32],int size){
+	int i;
+	char result[7][32];
+	char *str[] = "test";
+	strcpy(result[0],str);
+	printf("%s",buf[0]);
+	printf("%s",result[0]);
+	//printf(i=0;i<size;i++) printf("%s",result);
+}
+
 
 int main(){
     int i;
@@ -61,10 +71,12 @@ int main(){
 	
 	char bufData[7][32]; //[кол-во эл-тов в стуктуре][]
 	dump(&d,bufData);
+	printf("dump: ");
 	for(i=0;i<7;i++) printf("%s ",bufData[i]);
 	puts("");
 	swap(&d,7);
 	dump(&d,bufData);
+	printf("swap: ");
 	for(i=0;i<7;i++) printf("%s ",bufData[i]);
 	puts("");
 	unswap(&d,7);
@@ -72,5 +84,8 @@ int main(){
 	//puts("");
 	//unswap(&d,7);
 	//dump(&d, bufData);
+	printf("unswap: ");
 	for(i=0;i<7;i++) printf("%s ",bufData[i]);
+	puts("");
+	getPackets(&bufData,7);
 }
